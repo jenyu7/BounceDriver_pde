@@ -1,17 +1,21 @@
+Ball[] balls = new Ball[50];
 
-
-void setup(){
-  size(300,300);
-  background(0);
-  Ball[] balls = new Ball[3];
-  for(Ball b: balls){
-   ellipse(b.x,b.y,b.rad,b.rad); 
+void setup() {
+  size(700, 700);
+  background(100);
+  //fill(255,0,0);
+  for (int i=0; i < balls.length; i++) {
+    balls[i] = new Ball();
   }
 }
 
-void draw(){
-  background(0);
+void draw() {
+  background(100);
+  for (Ball b : balls) {
+    stroke(100);
+    fill(b.c);
+    //b.bounce();
+    b.update();
+    ellipse(b.x, b.y, b.rad, b.rad);
+  }
 }
-
-//void bounce(){
-//}

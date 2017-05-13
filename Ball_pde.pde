@@ -3,38 +3,47 @@ class Ball {
   float y;
   float dx;
   float dy;
-  int c; 
+  color c; 
   int rad;
-  void Ball() {
+
+  Ball() {
     float r = random(256);
     float g = random(256);
     float b = random(256);
     c = color(r, g, b);
-    rad = 10;
+    rad = 15;
     x = random((width - rad) + rad/2);
     y = random((height - rad) + rad/2);
     dx = random(10)-5;
     dy = random(10) -5;
+    //System.out.println("" + x + " " + y);
   }
 
-  boolean check&Bounce() {
-    if (x+rad+dx > width || x+rad+dx < 0) {
-      if (x+rad+dx > width)
-        x = width - rad;
+  boolean bounce() {
+    if (x > width || x < 0) {
+      if (x > width)
+        x = width;
       else
-        x = 0 + rad;
+        x = 0;
       dx = -1 * dx;
       return true;
     }
 
-    if (y+rad+dy > height || y+rad+dy < 0) {
-      if (y+rad+dx > height)
-        y = height - rad;
+    if (y > height || y < 0) {
+      if (y > height)
+        y = height;
       else
-        y = 0 + rad;
+        y = 0;
       dy = -1 * dy;
       return true;
     }
     return false;
+  }
+
+  void update() {
+    if (!bounce()) {
+      x += dx;
+      y += dy;
+    }
   }
 }
