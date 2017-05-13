@@ -20,20 +20,20 @@ class Ball {
   }
 
   boolean bounce() {
-    if (x > width || x < 0) {
-      if (x > width)
-        x = width;
+    if (x + rad/2 > width || x - rad/2 < 0) {
+      if (x + rad/2 > width)
+        x = width - rad/2;
       else
-        x = 0;
+        x = 0 + rad/2;
       dx = -1 * dx;
       return true;
     }
 
-    if (y > height || y < 0) {
-      if (y > height)
-        y = height;
+    if (y + rad/2 > height || y - rad/2 < 0) {
+      if (y + rad/2 > height)
+        y = height - rad/2;
       else
-        y = 0;
+        y = 0 + rad/2;
       dy = -1 * dy;
       return true;
     }
