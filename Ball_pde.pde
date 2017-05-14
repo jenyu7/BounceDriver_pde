@@ -1,13 +1,15 @@
 class Ball 
 {
+  //Instance Variables
   float x;
   float y;
   float dx;
   float dy;
   color c; 
   int rad;
-  int stage;
+  int state;
 
+  //Default Constructor
   Ball() 
   {
     float r = random(256);
@@ -19,73 +21,91 @@ class Ball
     y = random((height - rad) + rad/2);
     dx = random(10)-5;
     dy = random(10) -5;
-    stage = 0;
+    state = 0;
   }
 
-
-
-  boolean bounce() 
+  //Overloaded Constructor
+  Ball(int a, int b)
   {
-    if (x + rad/2 > width || x - rad/2 < 0) 
-    {
-      if (x + rad/2 > width) 
-      {
-        x = width - rad/2;
-      } 
-      else 
-      {
-        x = 0 + rad/2;
-      }
-      dx = -1 * dx + 1;
-      return true;
-    }
-
-    if (y + rad/2 > height || y - rad/2 < 0) 
-    {
-      if (y + rad/2 > height) 
-      {
-        y = height - rad/2;
-      } 
-      else 
-      {
-        y = 0 + rad/2;
-      }
-      dy = -1 * dy + 1;
-      return true;
-    }
- 
-    return false;
+    this();
+    x = a; 
+    y = b;
+    state = 1;
+  }
+  
+  //Displays the ball
+  void display()
+  {
+    fill(c);
+    ellipse(x, y, rad, rad);
   }
 
-  void update() 
+  //Mechanism for movement
+  void bounce() 
   {
-    if (!bounce()) 
-    {
-      x += dx;
-      y += dy;
-    }
+    if (x < rad || x > width-rad)  
+      dx = -dx;
+    if (y < rad|| y > height-rad) 
+      dy = -dy;
+    x += dx;
+    y += dy;
   }
  
+ //checks if the balls have collided
   boolean isCollision(Ball other)
   {
     if ((Math.abs(other.x-x) < rad/2) && (Math.abs(other.y-y) < rad/2))
     {
-      //System.out.println("collisions");
       return true;
     }
     return false;
   }
   
-  boolean shouldShrink()
+  void stateAnalysis(ArrayList<Ball> a, boolean globState)
   {
-    return rad >= 100;
+    if (state == 3)
+    {
+      return;
+    }
+    System.out.println("hello");
+    display();
+    if (state == 0)
+    {
+      bounce();
+      for (Ball b: a)
+      {
+        if (this.isCollision(b) && this != b)
+        {
+          if (globState)
+          {
+            setState(1);
+          }
+        }
+      }
+    }
+    else if (state == 1)
+    {
+      if (rad > 100)
+      {
+        setState(2);
+      }
+      rad ++;
+    }
+    else if (state == 2)
+    {
+      if (rad > 2)
+      {
+        setState(3);
+      }
+      rad --;
+    }
   }
   
-  boolean shouldBeDead()
+  void setState(int i)
   {
-    return rad <= 20 && stage == 1;
+    state = i;
   }
-  
+
   void grow()
   {
     rad ++;
