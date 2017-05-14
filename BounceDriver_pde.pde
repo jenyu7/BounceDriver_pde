@@ -1,4 +1,4 @@
-Ball[] balls = new Ball[10];
+Ball[] balls = new Ball[50];
 int bigBang = 0;
 
 void setup() 
@@ -53,7 +53,8 @@ void checkBang(Ball b)
               p.stage = 1;
             }
           }
-          if (b.stage == 1 && !b.shouldBeDead())
+        }
+        if (b.stage == 1 && !b.shouldBeDead())
           {
             b.shrink();
             if (b.shouldBeDead())
@@ -61,13 +62,12 @@ void checkBang(Ball b)
               b.rad = 0;
             }
           }
-          if (p.stage == 1 && !p.shouldBeDead())
+        if (p.stage == 1 && !p.shouldBeDead())
+        {
+          p.shrink();
+          if (p.shouldBeDead())
           {
-            p.shrink();
-            if (p.shouldBeDead())
-            {
-              p.rad = 0;
-            }
+            p.rad = 0;
           }
         }
      }
