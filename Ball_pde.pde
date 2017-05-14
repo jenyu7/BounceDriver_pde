@@ -46,4 +46,29 @@ class Ball {
       y += dy;
     }
   }
+  
+  void expand(){
+    rad ++;
+  }
+  
+  boolean checkCollision(Ball other){
+    if (Math.abs(other.x -x) > 2*rad){
+      return false;
+    }
+    if (Math.abs(other.y-y) > 2*rad){
+      return false;
+    }
+    return true;
+  }
+  
+  boolean checkShrink(){
+    if (rad == 50){
+      return true;
+    }
+    return false;
+  }
+  
+  void shrink(){
+    rad --;
+  }
 }

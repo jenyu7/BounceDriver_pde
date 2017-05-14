@@ -1,4 +1,5 @@
 Ball[] balls = new Ball[50];
+boolean bigBang = true;
 
 void setup() {
   size(700, 700);
@@ -17,5 +18,16 @@ void draw() {
     //b.bounce();
     b.update();
     ellipse(b.x, b.y, b.rad, b.rad);
+    if (bigBang){
+      for (Ball p: balls){
+        if (b.checkCollision(p)){
+          b.expand();
+          p.expand();
+          if (b.checkShrink() && p.checkShrink()){
+            b.shrink();
+            p.shrink();
+        }
+      }
+    }
   }
 }
