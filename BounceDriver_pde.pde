@@ -31,66 +31,48 @@ void checkBang(Ball b)
     {
       for (Ball p: balls)
       {
-        if (b.checkCollision(p) && (b != p) )
+        if (b.isCollision(p) && (b != p) )
         {
           b.dx = 0; 
           p.dx = 0;
           b.dy = 0;
           p.dy = 0;
-          if ((b.stage == 0) && (p.stage == 0))
-        {
-            if (!b.checkShrink())
+          if (b.stage == 0 && !b.shouldShrink())
+          {
+            b.grow();
+            if (b.rad == 100)
             {
-              b.grow();
-              if (b.rad == 100)
-              {
-                b.stage = 1;
-              }
-            }
-            if (!p.checkShrink())
-            {
-              p.grow();
-              if (p.rad == 100)
-              {
-                p.stage = 1;
-              }
+              b.stage = 1;
             }
           }
-        }
-        
-        if (b.stage == 1 || p.stage == 1)
-        {
-          if (!b.checkDead())
+          if (p.stage == 0 && !p.shouldShrink())
+          {
+            p.grow();
+            if (p.rad == 100)
+            {
+              p.stage = 1;
+            }
+          }
+          if (b.stage == 1 && !b.shouldBeDead())
           {
             b.shrink();
-            if (b.rad == 2)
+            if (b.shouldBeDead())
             {
-              b.stage = 2;
+              b.rad = 0;
             }
           }
-          if (!p.checkDead())
+          if (p.stage == 1 && !p.shouldBeDead())
           {
             p.shrink();
-            if (p.rad == 2)
+            if (p.shouldBeDead())
             {
-              p.stage = 2;
+              p.rad = 0;
             }
           }
         }
-        if (b.stage == 2 || p.stage == 2)
-        {
-          if (b.checkDead())
-          {
-            b.rad = 0;
-          }
-          if (p.checkDead())
-          {
-            p.rad = 0;
-          }
-        }
-       }  
      }
    }
+}
 void mouseClicked()
 {
   bigBang = 1;

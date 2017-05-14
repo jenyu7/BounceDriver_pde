@@ -65,13 +65,8 @@ class Ball
       y += dy;
     }
   }
-  
-  void grow()
-  {
-    rad ++;
-  }
-  
-  boolean checkCollision(Ball other)
+ 
+  boolean isCollision(Ball other)
   {
     if ((Math.abs(other.x-x) < rad/2) && (Math.abs(other.y-y) < rad/2))
     {
@@ -81,18 +76,24 @@ class Ball
     return false;
   }
   
-  boolean checkShrink()
+  boolean shouldShrink()
   {
     return rad >= 100;
   }
   
-  boolean checkDead()
+  boolean shouldBeDead()
   {
-    return rad <= 2 && stage == 1;
+    return rad <= 20 && stage == 1;
   }
   
-  void shrink()
+  void grow()
+  {
+    rad ++;
+  }
+  
+    void shrink()
   {
       rad -= 1;
   }
+  
 }
