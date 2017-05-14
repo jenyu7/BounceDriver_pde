@@ -14,16 +14,7 @@ void setup()
 
 void draw() 
 {
-  background(100);
-  /*
-  ArrayList<Ball> imperialism = new ArrayList<Ball>();
-  for (Ball b : balls) 
-  {
-    if (b.state > 0)
-    {
-      imperialism.add(b);
-    }
-  }*/
+  background(0);
   for (int k = 0; k < balls.size(); k ++)
   {
     balls.get(k).stateAnalysis(balls, bigBang);
