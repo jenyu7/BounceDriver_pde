@@ -12,7 +12,7 @@ _Period 5, APCS2 Brown Mykolyk_
 | Problem| Solution|Severity|
 |-------------|-------------|:-----:|
 | Screen did not show balls growing and shrinking.|Ditched the while loop, realized draw() is repeatedly invoked.|5|
-| Compilation error stating a curly brace was missing.|Though the error highlighted code in the Ball class, the missing curly bracewas actually within the Driver class.|1|
+| Compilation error stating a curly brace was missing.|Though the error highlighted code in the Ball class, the missing curly brace was actually within the Driver class.|1|
 | Mouse-click would affect balls that did not collide.|Mouse-click changed the global variable within the Driver class. Problem remedied by placing a state variable within the Ball class instead, so each ball would have to keep track of its own individual state.|5|
 |Balls would grow, not reach their max size, and leave residue on the screen, never shrinking.|Once a collision has been made after a mouse click, a ball should not have to be colliding with another ball to grow and shrink. A collision should change the state of the ball, leading to a whole other process that is independent of future collisions.|3|
 |Balls that were shrinking would just become very small balls, but still visible.|See solution directly above.|3|
