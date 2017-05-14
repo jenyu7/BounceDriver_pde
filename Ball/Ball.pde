@@ -31,7 +31,6 @@ class Ball
       if (x + rad/2 > width) 
       {
         x = width - rad/2;
-        dx = -1 * dx;
       } 
       else 
       {
@@ -46,14 +45,13 @@ class Ball
       if (y + rad/2 > height) 
       {
         y = height - rad/2;
-        dy = -1 * dy;
       } 
       else 
       {
         y = 0 + rad/2;
         dy = -1 * dy;
+        return true;
       }
-      return true;
     }
  
     return false;
@@ -67,37 +65,36 @@ class Ball
       y += dy;
     }
   }
-  
-  void grow()
+  void expand()
   {
-   /* while (!checkShrink())
-    {
-      rad += 1;
-    }*/
     rad ++;
-    //shrink();
   }
   
   boolean checkCollision(Ball other)
   {
-    if ((Math.abs(other.x-x) < rad) && (Math.abs(other.y-y) < rad))
+    if (Math.abs(other.x -x) > 2*rad)
     {
-     // System.out.println(other.x + " " + x);
+      return false;
+    }
+    if (Math.abs(other.y-y) > 2*rad)
+    {
+      return false;
+    }
+    return true;
+  }
+  
+  boolean checkShrink()
+  {
+    if (rad == 50)
+    {
       return true;
     }
     return false;
   }
   
-  boolean checkShrink()
-  {
-    return rad >= 50;
-  }
-  
   void shrink()
   {
-    while (rad >0)
-    {
-      rad -= 1;
-    }
+    rad --;
   }
+
 }
