@@ -1,4 +1,4 @@
-Ball[] balls = new Ball[3];
+Ball[] balls = new Ball[20];
 int bigBang = 0;
 
 void setup() 
@@ -19,10 +19,7 @@ void draw()
   {
     stroke(100);
     fill(b.c);
-    if (bigBang == 0)
-    {
-      b.update();
-    }
+    b.update();
     ellipse(b.x, b.y, b.rad, b.rad);
     checkBang(b);
   }
