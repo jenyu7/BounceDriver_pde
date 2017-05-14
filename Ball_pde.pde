@@ -38,6 +38,7 @@ class Ball
   void display()
   {
     fill(c);
+    tint(200);
     ellipse(x, y, rad, rad);
   }
 
@@ -50,12 +51,12 @@ class Ball
   //Mechanism for movement
   void bounce() 
   {
+    x += dx;
+    y += dy;
     if (x < rad || x > width-rad)  
       dx = -dx;
     if (y < rad|| y > height-rad) 
       dy = -dy;
-    x += dx;
-    y += dy;
   }
  
  //checks if the balls have collided
@@ -80,6 +81,7 @@ class Ball
   {
     if (state == 3)
     {
+      a.remove(a.indexOf(this));
       return;
     }
     display();
@@ -124,4 +126,4 @@ class Ball
     }
   }
   
-}
+  }
