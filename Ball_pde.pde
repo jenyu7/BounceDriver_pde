@@ -6,7 +6,7 @@ class Ball
   float dy;
   color c; 
   int rad;
-
+  int stage;
 
   Ball() 
   {
@@ -19,7 +19,7 @@ class Ball
     y = random((height - rad) + rad/2);
     dx = random(10)-5;
     dy = random(10) -5;
-    //System.out.println("" + x + " " + y);
+    stage = 0;
   }
 
 
@@ -31,13 +31,12 @@ class Ball
       if (x + rad/2 > width) 
       {
         x = width - rad/2;
-        dx = -1 * dx;
       } 
       else 
       {
         x = 0 + rad/2;
-        dx = -1 * dx;
       }
+      dx = -1 * dx + 1;
       return true;
     }
 
@@ -46,13 +45,12 @@ class Ball
       if (y + rad/2 > height) 
       {
         y = height - rad/2;
-        dy = -1 * dy;
       } 
       else 
       {
         y = 0 + rad/2;
-        dy = -1 * dy;
       }
+      dy = -1 * dy + 1;
       return true;
     }
  
@@ -70,19 +68,14 @@ class Ball
   
   void grow()
   {
-   /* while (!checkShrink())
-    {
-      rad += 1;
-    }*/
     rad ++;
-    //shrink();
   }
   
   boolean checkCollision(Ball other)
   {
-    if ((Math.abs(other.x-x) < rad) && (Math.abs(other.y-y) < rad))
+    if ((Math.abs(other.x-x) < rad/2) && (Math.abs(other.y-y) < rad/2))
     {
-     // System.out.println(other.x + " " + x);
+      //System.out.println("collisions");
       return true;
     }
     return false;
@@ -90,14 +83,16 @@ class Ball
   
   boolean checkShrink()
   {
-    return rad >= 50;
+    return rad >= 100;
+  }
+  
+  boolean checkDead()
+  {
+    return rad <= 2;
   }
   
   void shrink()
   {
-    while (rad >0)
-    {
       rad -= 1;
-    }
   }
 }
