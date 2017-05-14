@@ -9,6 +9,7 @@ _Period 5, APCS2 Brown Mykolyk_
 
 | Problem| Solution|Severity|
 |-------------|-------------|:-----:|
+|Balls would bounce erratically when approaching the edge of the screen.|The distance from the border had to be rad/2 instead of rad, and we had to ignore dx and dy.|1|
 | Screen did not show balls growing and shrinking.|Ditched the while loop, realized draw() is repeatedly invoked.|4|
 | Compilation error stating a curly brace was missing.|Though the error highlighted code in the Ball class, the missing curly bracewas actually within the Driver class.|1|
 | Mouse-click would affect balls that did not collide.|Mouse-click changed the global variable within the Driver class. Problem remedied by placing a state variable within the Ball class instead, so each ball would have to keep track of its own individual state.|4|
