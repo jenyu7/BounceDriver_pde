@@ -88,7 +88,7 @@ class Ball
   
   boolean checkDead()
   {
-    return rad <= 2;
+    return rad <= 2 && stage == 1;
   }
   
   void shrink()
