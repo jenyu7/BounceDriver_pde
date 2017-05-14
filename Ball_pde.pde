@@ -37,8 +37,7 @@ class Ball
   //Displays the ball
   void display()
   {
-    fill(c);
-    tint(200);
+    fill(c, 200);
     ellipse(x, y, rad, rad);
   }
 
