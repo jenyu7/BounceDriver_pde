@@ -33,7 +33,7 @@ class Ball
     y = b;
     state = 1;
   }
-  
+
   //Displays the ball
   void display()
   {
@@ -46,7 +46,7 @@ class Ball
   {
     state = i;
   }
-  
+
   //Mechanism for movement
   void bounce() 
   {
@@ -57,17 +57,13 @@ class Ball
     if (y < rad|| y > height-rad) 
       dy = -dy;
   }
- 
- //checks if the balls have collided
+
+  //checks if the balls have collided
   boolean isCollision(Ball other)
   {
-    if ((Math.abs(other.x-x) < rad/2) && (Math.abs(other.y-y) < rad/2))
-    {
-      return true;
-    }
-    return false;
+    return dist(x, y, other.x, other.y) < (rad/2 + other.rad / 2);
   }
-  
+
   /****
    * Analyzes the current state of the ball
    * 0: bouncing around, mouse has not yet been clicked. 
@@ -87,10 +83,10 @@ class Ball
     if (state == 0)
     {
       bounce();
-      for (Ball b: a)
+      for (Ball b : a)
       {
         //if there is a collision, and not with itself
-        if (this.isCollision(b) && this != b)
+        if (this.isCollision(b) && this != b && (b.state == 2 || b.state == 1))
         {
           // if mouse has already been clicked
           if (globState)
@@ -124,5 +120,4 @@ class Ball
       rad --;
     }
   }
-  
-  }
+}
